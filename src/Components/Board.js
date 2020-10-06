@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../App.css";
+import "../style.css";
 import Square from "./Square";
 
 // <function helper>
@@ -81,7 +81,7 @@ const Board = () => {
   // </Helper function>
 
   return (
-    <div>
+    <div className="board">
       {winner ? <button onClick={() => newGame()}>New Game</button> : ""}
       <div className="status">{status}</div>
 
