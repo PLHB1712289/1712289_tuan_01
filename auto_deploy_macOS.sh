@@ -7,7 +7,10 @@ npm run deploy
 
 # commit & push github
 git add .
-git commit -m "deploy app"
+
+read -p "What is your commit message: " commit_msg
+
+git commit -m "$commit_msg"
 git push
 
 echo "Done!!"
