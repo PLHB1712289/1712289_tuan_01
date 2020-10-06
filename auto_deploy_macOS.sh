@@ -1,15 +1,14 @@
-echo "==================="
-echo "= AUTO DEPLOY APP ="
-echo "===================" 
+echo "   ==================="
+echo "   = AUTO DEPLOY APP ="
+echo "   ===================" 
+
+read -p "What is your commit message: " commit_msg
 
 # build app
 npm run deploy
 
 # commit & push github
 git add .
-
-read -p "What is your commit message: " commit_msg
-
 git commit -m "$commit_msg"
 git push
 
