@@ -21,7 +21,7 @@ const Moves = ({ history, sortOption, current, onClickItem }) => {
 
     const
       desc = move
-        ? `Go to move #${_step} - ${location}, location: (${~~(location / 3) + 1}, ${location % 3 + 1}), player: ${turn}`
+        ? `Go to move #${_step}, location: (${~~(location / 3) + 1}, ${location % 3 + 1}), player: ${turn}`
         : "Go to game start";
     return (
 
