@@ -1,11 +1,19 @@
 import React from "react";
 import "../style.css";
 
-const Square = ({ value, onClick }) => {
+const Square = ({ value, onClick, isHighlight }) => {
   return (
-    <button className="square" onClick={() => onClick()}>
-      {value}
-    </button>
+    isHighlight ?
+      (<button style={{ backgroundColor: "green" }} className="square" onClick={() => onClick()}>
+        { value}
+      </button >)
+
+      :
+
+      (<button className="square" onClick={() => onClick()}>
+        {value}
+      </button>)
+
   );
 };
 

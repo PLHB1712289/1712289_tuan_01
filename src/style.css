@@ -1,6 +1,13 @@
+:root{
+  --width-square: 34px;
+}
+
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+
+  display: flex;
+  justify-content: center;
 }
 
 ol, ul {
@@ -15,6 +22,15 @@ ol, ul {
 
 .status {
   margin-bottom: 10px;
+  margin-left: 10px;
+  text-align: center;
+  background-color: #8797a5;
+}
+
+.status button {
+  margin-left: 0.5rem;
+  width: 100px;
+  height: 25px;
 }
 
 .square {
@@ -24,12 +40,25 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: var(--width-square);
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: var(--width-square);
+
+  cursor: pointer;
+}
+
+button{
+  cursor: pointer;
+}
+
+ol button {
+  width: 300px;
+  height: 25px;
+  margin: 2px;
+  border-radius: 2px;
 }
 
 .square:focus {
@@ -43,16 +72,18 @@ ol, ul {
 .game {
   display: flex;
   flex-direction: row;
-  background-color: red;
 }
 
 .game-info {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .board{
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: calc(var(--width-square) * 3);
+  flex-wrap: wrap;
 }
