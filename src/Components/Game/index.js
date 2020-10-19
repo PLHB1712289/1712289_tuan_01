@@ -1,36 +1,12 @@
 import React, { useState } from "react";
-import FLAGSORT from "../Resource/FLAGSORT";
-import "../style.css";
-import Board from "./Board";
-import Moves from "./Moves";
+import "../../style.css";
+import Board from "../Board";
+import Moves from "../Moves";
 
-// <function helper>
-const calculateWinner = (squares) => {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+import FLAGSORT from "../../Resource/FLAGSORT";
+import calculateWinner from "./service";
 
-  let isDraw = true;
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return { winner: squares[a], lines: lines[i] };
-    }
-
-    isDraw = squares[a] && squares[b] && squares[c] && isDraw;
-  }
-
-  return isDraw;
-};
-// </function helper>
+// Component Game
 
 const Game = () => {
   const [history, setHistory] = useState([
@@ -58,8 +34,7 @@ const Game = () => {
     let historyTemp = [];
     if (current !== history.length - 1) {
       historyTemp = history.slice(0, current + 1);
-    }
-    else {
+    } else {
       historyTemp = history.slice();
     }
 
@@ -82,8 +57,8 @@ const Game = () => {
             squares: squaresTemp,
             location: i,
             turn: isXTurn ? "X" : "O",
-            step: current + 1
-          }
+            step: current + 1,
+          },
         ])
       );
       setCurrent(historyTemp.length);
@@ -98,8 +73,7 @@ const Game = () => {
         } else {
           setStatus(`Draw`);
         }
-      }
-      else {
+      } else {
         setStatus(`Next player: ${isXTurn ? "O" : "X"}`);
         newHighlight[i] = true;
       }
@@ -114,7 +88,9 @@ const Game = () => {
   // Helper 2: create new game
   const newGame = () => {
     alert(`New Game?`);
-    setHistory([{ squares: Array(9).fill(null), location: -1, turn: "X", step: 0 }]);
+    setHistory([
+      { squares: Array(9).fill(null), location: -1, turn: "X", step: 0 },
+    ]);
     setHighlight(Array(9).fill(false));
     setIsXTurn(true);
     setWinner(null);
@@ -133,42 +109,65 @@ const Game = () => {
     setStatus(`Next player: ${move % 2 === 0 ? "X" : "O"}`);
   };
 
+  // Helper 4: handle click button sort
   const handleClickSort = () => {
     switch (sortOption) {
       case FLAGSORT.DEFAULT:
         setSortOption(FLAGSORT.ACENDING);
         break;
+
       case FLAGSORT.ACENDING:
         setSortOption(FLAGSORT.DECENDING);
         break;
+
       case FLAGSORT.DECENDING:
         setSortOption(FLAGSORT.DEFAULT);
         break;
-      default: break;
+
+      default:
+        break;
     }
-  }
+  };
   // </Helper function>
 
-  const sortTag = ['DECENDING', 'None', 'ACENDING'];
-  const colorSortTag = ['green', 'white', 'yellow'];
+  const sortTag = ["DECENDING", "None", "ACENDING"];
+  const colorSortTag = ["green", "white", "yellow"];
 
   return (
     <div className="game">
       <div className="game-board">
-        <Board onClick={handleClick} squares={history[current].squares} highlight={highlight} />
+        <Board
+          onClick={handleClick}
+          squares={history[current].squares}
+          highlight={highlight}
+        />
       </div>
       <div className="game-info">
         <div className="status">
           <div>{status}</div>
           <div>
             <span>Sort:</span>
-            <button style={{ backgroundColor: `${colorSortTag[sortOption + 1]}` }} onClick={() => { handleClickSort() }}>{sortTag[sortOption + 1]}</button>
+            <button
+              style={{ backgroundColor: `${colorSortTag[sortOption + 1]}` }}
+              onClick={() => {
+                handleClickSort();
+              }}
+            >
+              {sortTag[sortOption + 1]}
+            </button>
           </div>
           <br />
-          <div>{winner ? <button onClick={() => newGame()}>New Game</button> : ""}</div>
+          <div>
+            {winner ? <button onClick={() => newGame()}>New Game</button> : ""}
+          </div>
         </div>
 
-        <Moves history={history} sortOption={sortOption} current={current} onClickItem={jumpTo} />
+        <Moves
+          history={history}
+          sortOption={sortOption}
+          current={current}
+          onClickItem={jumpTo}
+        />
       </div>
     </div>
   );

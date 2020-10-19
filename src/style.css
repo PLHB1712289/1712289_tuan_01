@@ -1,4 +1,4 @@
-:root{
+:root {
   --width-square: 34px;
 }
 
@@ -10,7 +10,8 @@ body {
   justify-content: center;
 }
 
-ol, ul {
+ol,
+ul {
   padding-left: 30px;
 }
 
@@ -50,7 +51,7 @@ ol, ul {
   cursor: pointer;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
@@ -78,12 +79,4 @@ ol button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.board{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(var(--width-square) * 3);
-  flex-wrap: wrap;
 }
