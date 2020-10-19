@@ -26,4 +26,4 @@ const calculateWinner = (squares) => {
 };
 // </function helper>
 
-module.exports = calculateWinner;
+export default calculateWinner;
